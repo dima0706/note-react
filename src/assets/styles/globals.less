@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8fafd;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #a0acc0;
+  &:hover {
+    background-color: #77839e;
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #fff;
+}
+
+.single-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

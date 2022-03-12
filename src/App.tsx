@@ -10,7 +10,6 @@ function App() {
     const result = await services.auth.login({ phone: '131', password: '123' });
     console.log(result);
   };
-
   fetchFn();
 
   return (
