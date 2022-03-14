@@ -1,34 +1,24 @@
-import { useState } from 'react';
 import '@/App.less';
-import { Button } from 'antd';
-import { services } from '@/service';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import LayoutHeader from '@/components/LayoutHeader';
+import Home from '@/views/home';
+import Login from '@/views/login';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  const fetchFn = async () => {
-    const result = await services.auth.login({ phone: '131', password: '123' });
-    console.log(result);
-  };
-  fetchFn();
-
+export default function App() {
+  const pageTabArr = [
+    { label: '首页', key: 'home', path: '/', component: <Home /> },
+    { label: '登录页', key: 'login', path: '/login', component: <Login /> }
+  ];
   return (
     <div className="App">
-      <div className="count-text">
-        <i className="iconfont icon-weixin"></i>
-        <span>count：</span>
-        <span>{count}</span>
-      </div>
-      <div className="tools">
-        <Button onClick={() => setCount(count + 1)}>
-          <span>add</span>
-        </Button>
-        <Button disabled={count < 1} onClick={() => setCount(count - 1)}>
-          <span>sub</span>
-        </Button>
-      </div>
+      <LayoutHeader />
+      <HashRouter>
+        <Routes>
+          {pageTabArr.map((item) => (
+            <Route key={item.key} path={item.path} element={item.component}></Route>
+          ))}
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
-
-export default App;

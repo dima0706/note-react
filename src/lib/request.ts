@@ -21,12 +21,22 @@ class AjaxRequest {
     return err;
   }
 
-  get(url: string, params: any = {}, options?: any) {
-    return this.request.get(url, { ...(options || {}), params });
+  async get(url: string, params: any = {}, options?: any) {
+    try {
+      const { data } = await this.request.get(url, { ...(options || {}), params });
+      return [null, data];
+    } catch (err) {
+      return Promise.resolve([err, null]);
+    }
   }
 
-  post(url: string, params: any = {}, options?: any) {
-    return this.request.post(url, params, { ...(options || {}) });
+  async post(url: string, params: any = {}, options?: any) {
+    try {
+      const { data } = await this.request.post(url, params, { ...(options || {}) });
+      return [null, data];
+    } catch (err) {
+      return Promise.resolve([err, null]);
+    }
   }
 }
 
