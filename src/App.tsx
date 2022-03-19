@@ -1,6 +1,5 @@
 import '@/App.less';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import LayoutHeader from '@/components/LayoutHeader';
 import Home from '@/views/home';
 import Login from '@/views/login';
 
@@ -11,7 +10,6 @@ export default function App() {
   ];
   return (
     <div className="App">
-      <LayoutHeader />
       <HashRouter>
         <Routes>
           {pageTabArr.map((item) => (
