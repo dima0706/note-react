@@ -1,3 +1,27 @@
 .home-page {
-  
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  .home-page-content {
+    flex: 1;
+    width: 0;
+  }
+
+  .home-page-aside {
+    position: sticky;
+    top: 0;
+    right: 0;
+    width: 240px;
+    margin-left: 12px;
+    z-index: 1;
+
+    .home-page-aside-content {
+      margin-top: 10px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
 }
