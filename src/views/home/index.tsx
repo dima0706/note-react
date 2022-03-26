@@ -1,6 +1,9 @@
 import './index.less';
 import Layout from '@/components/Layout';
 import RankList from '@/components/RankList';
+import { useState } from 'react';
+import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const hotList = [
@@ -59,10 +62,34 @@ export default function Home() {
     }
   ];
 
+  const [mode, updMode] = useState('new');
+
   return (
     <Layout full>
       <div className="home-page">
-        <div className="home-page-content">content</div>
+        <div className="home-page-content">
+          <div className="home-header">
+            <div className="home-header-mode-ul">
+              <div
+                className={['home-header-mode-li', mode === 'new' ? 'is-active' : ''].join(' ')}
+                onClick={() => updMode('new')}
+              >
+                最新
+              </div>
+              <div
+                className={['home-header-mode-li', mode === 'hot' ? 'is-active' : ''].join(' ')}
+                onClick={() => updMode('hot')}
+              >
+                热榜
+              </div>
+            </div>
+            <div className="home-header-create-btn">
+              <Link to="/editor">
+                <Button>写文章</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
         <div className="home-page-aside">
           <div className="home-page-aside-content">
             <RankList title="热度榜" list={hotList} />
