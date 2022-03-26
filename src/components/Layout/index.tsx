@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import './index.less';
 import logoImg from '@/assets/logo.png';
 
-export default function Layout({ page, full = false }: LayoutProps) {
+export default function Layout({ children, full = false }: LayoutProps) {
   let contentClassName = 'page-layout-content';
   if (full) {
     contentClassName = `${contentClassName} is-full`;
@@ -13,12 +13,12 @@ export default function Layout({ page, full = false }: LayoutProps) {
         <img src={logoImg} alt="logo" className="layout-header-logo" />
         <div className="layout-header-info">info</div>
       </div>
-      <div className={contentClassName}>{page}</div>
+      <div className={contentClassName}>{children}</div>
     </div>
   );
 }
 
 interface LayoutProps {
-  page: ReactElement;
+  children?: ReactElement;
   full?: boolean;
 }

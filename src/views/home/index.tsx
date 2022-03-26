@@ -60,21 +60,18 @@ export default function Home() {
   ];
 
   return (
-    <Layout
-      full
-      page={
-        <div className="home-page">
-          <div className="home-page-content">content</div>
-          <div className="home-page-aside">
-            <div className="home-page-aside-content">
-              <RankList title="热度榜" list={hotList} />
-            </div>
-            <div className="home-page-aside-content">
-              <RankList title="点赞榜" list={likeList} />
-            </div>
+    <Layout full>
+      <div className="home-page">
+        <div className="home-page-content">content</div>
+        <div className="home-page-aside">
+          <div className="home-page-aside-content">
+            <RankList title="热度榜" list={hotList} />
+          </div>
+          <div className="home-page-aside-content">
+            <RankList title="点赞榜" list={likeList} />
           </div>
         </div>
-      }
-    ></Layout>
+      </div>
+    </Layout>
   );
 }
