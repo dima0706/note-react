@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import './index.less';
-import logoImg from '@/assets/logo.png';
+import logoImg from '@/assets/favicon.ico';
 
 export default function Layout({ children, full = false }: LayoutProps) {
   let contentClassName = 'page-layout-content';
