@@ -85,7 +85,7 @@ export default function Home() {
             </div>
             <div className="home-header-create-btn">
               <Link to="/editor">
-                <Button>写文章</Button>
+                <Button type="primary">去记录吧</Button>
               </Link>
             </div>
           </div>
