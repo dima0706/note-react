@@ -1,4 +1,6 @@
 import './index.less';
+import 'markdown-navbar/dist/navbar.css';
+import MarkNav from 'markdown-navbar';
 import Layout from '@/components/Layout';
 import Editor from 'for-editor';
 import { useState } from 'react';
@@ -49,6 +51,7 @@ export default function EditorPage() {
           </div>
         </div>
         <div className="md-editor">
+          <MarkNav className="md-menu" source={mdText} updateHashAuto={false} />
           <Editor
             value={mdText}
             preview
