@@ -1,6 +1,8 @@
-import Home from '@/views/home';
-import Login from '@/views/login';
-import Editor from '@/views/editor';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('@/views/home'));
+const Login = lazy(() => import('@/views/login'));
+const Editor = lazy(() => import(/* webpackChunkName: 'editor'*/ '@/views/editor'));
 
 export const rootRoutes = [
   { label: '首页', key: 'home', path: '/', component: <Home /> },
