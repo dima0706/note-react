@@ -13,8 +13,8 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "body-parser": "^1.20.0",
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1"
   }
 }
