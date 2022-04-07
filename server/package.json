@@ -1,0 +1,20 @@
+{
+  "name": "note-server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Dima",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "cross-env node src/index.js"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "koa": "^2.13.4",
+    "koa-router": "^10.1.1"
+  }
+}
