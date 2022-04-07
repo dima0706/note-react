@@ -1,101 +1,47 @@
 import './index.less';
 import Layout from '@/components/Layout';
-import RankList from '@/components/RankList';
 import { useState } from 'react';
-import { Button } from 'antd';
+import { Button, TreeSelect } from 'antd';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const hotList = [
-    {
-      id: '1',
-      title: '你不知道的javascript(一)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '2',
-      title: '你不知道的javascript(二)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '3',
-      title: '你不知道的javascript(三)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '4',
-      title: '你不知道的javascript(四)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '5',
-      title: '你不知道的javascript(五)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    }
-  ];
+  const { TreeNode } = TreeSelect;
 
-  const likeList = [
-    {
-      id: '1',
-      title: '人月传说(一)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '2',
-      title: '人月传说(二)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '3',
-      title: '人月传说(三)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '4',
-      title: '人月传说(四)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    },
-    {
-      id: '5',
-      title: '人月传说(五)',
-      text: '巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉巴驴阿拉巴拉'
-    }
-  ];
-
-  const [mode, updMode] = useState('new');
+  const [value, setValue] = useState('');
 
   return (
     <Layout full>
       <div className="home-page">
         <div className="home-page-content">
           <div className="home-header">
-            <div className="home-header-mode-ul">
-              <div
-                className={['home-header-mode-li', mode === 'new' ? 'is-active' : ''].join(' ')}
-                onClick={() => updMode('new')}
+            <div className="home-header-filter">
+              <span>筛选：</span>
+              <TreeSelect
+                className="home-header-tree-select"
+                showSearch
+                value={value}
+                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                placeholder="Please select"
+                allowClear
+                treeDefaultExpandAll
+                onChange={(val: string) => setValue(val)}
               >
-                最新
-              </div>
-              <div
-                className={['home-header-mode-li', mode === 'hot' ? 'is-active' : ''].join(' ')}
-                onClick={() => updMode('hot')}
-              >
-                热榜
-              </div>
+                <TreeNode value="parent 1" title="parent 1">
+                  <TreeNode value="parent 1-0" title="parent 1-0">
+                    <TreeNode value="leaf1" title="leaf1" />
+                    <TreeNode value="leaf2" title="leaf2" />
+                  </TreeNode>
+                  <TreeNode value="parent 1-1" title="parent 1-1">
+                    <TreeNode value="leaf3" title={<b style={{ color: '#08c' }}>leaf3</b>} />
+                  </TreeNode>
+                </TreeNode>
+              </TreeSelect>
             </div>
             <div className="home-header-create-btn">
               <Link to="/editor">
                 <Button type="primary">去记录吧</Button>
               </Link>
             </div>
-          </div>
-        </div>
-        <div className="home-page-aside">
-          <div className="home-page-aside-content">
-            <RankList title="热度榜" list={hotList} />
-          </div>
-          <div className="home-page-aside-content">
-            <RankList title="点赞榜" list={likeList} />
           </div>
         </div>
       </div>

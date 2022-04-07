@@ -12,36 +12,10 @@
       align-items: center;
       justify-content: space-between;
       background-color: #fff;
-      padding: 0 10px;
+      padding: 10px;
       
-      .home-header-mode-ul {
-        .home-header-mode-li {
-          position: relative;
-          display: inline-block;
-          cursor: pointer;
-          padding: 10px;
-
-          &.is-active {
-            color: @primaryColor;
-          }
-
-          &::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 30%;
-            background-color: rgba(#333, 0.3);
-          }
-
-          &:last-child {
-            &::after {
-              display: none;
-            }
-          }
-        }
+      .home-header-tree-select {
+        width: 300px;
       }
     }
   }
