@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useResize<T>(cb?: (val: ResizeInfo) => T): ResizeInfo {
+export default function useResize(cb?: (val: ResizeInfo) => void): ResizeInfo {
   const [info, updFn] = useState({ w: window.innerWidth, h: window.innerHeight });
 
   const resizeHandle = (e: any) => {
