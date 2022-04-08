@@ -14,7 +14,6 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-debugger': 'error',
-    'no-unused-vars': 'error',
     'no-control-regex': 'off',
     'prefer-const': ['error', { destructuring: 'all', ignoreReadBeforeAssign: true }],
     camelcase: [
@@ -24,6 +23,7 @@ module.exports = {
         ignoreImports: true
       }
     ],
+    '@typescript-eslint/no-unused-vars': 'error',
     'no-async-promise-executor': 'warn',
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/no-var-requires': 'off'
