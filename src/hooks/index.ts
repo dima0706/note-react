@@ -1,3 +1,5 @@
 import useResize from './useResize';
+import useValDebounce from './useValDebounce';
+import useUpdateEffect from './useUpdateEffect';
 
-export { useResize };
+export { useResize, useValDebounce, useUpdateEffect };

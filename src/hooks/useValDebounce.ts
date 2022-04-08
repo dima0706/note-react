@@ -1,14 +1,14 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import useFirstMountState from './useFirstMountState';
 
 export default function useValDebounce<T>(defaultVal: T, options: ValDebounceOptions): T {
   const { delay, cb } = options;
 
-  const needCallback = useRef(false);
+  const isFirstMount = useFirstMountState();
   const [val, updVal] = useState(defaultVal);
 
   useEffect(() => {
-    if (!needCallback.current) {
-      needCallback.current = true;
+    if (isFirstMount) {
       return;
     }
 
