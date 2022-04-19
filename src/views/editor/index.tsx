@@ -30,7 +30,7 @@ export default function EditorPage() {
   };
 
   return (
-    <Layout full>
+    <Layout full showCreateBtn={false}>
       <div className="editor-page">
         <div className="editor-header">
           <Breadcrumb>

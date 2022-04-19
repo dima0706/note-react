@@ -5,13 +5,13 @@ const bodyParser = require('koa-bodyparser');
 
 app.use(bodyParser());
 
-app.use(async (ctx, next) => {
+app.use((ctx, next) => {
   if (ctx.request.method === 'POST') {
     console.log(`Process ${ctx.request.method} ${ctx.request.url} => ${JSON.stringify(ctx.request.body)}`);
   } else {
     console.log(`Process ${ctx.request.method} ${ctx.request.url}`);
   }
-  await next();
+  next();
 });
 
 app.use(router.routes());

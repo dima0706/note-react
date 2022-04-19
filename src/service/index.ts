@@ -1,3 +1,3 @@
-import * as auth from './auth';
+import * as note from './note';
 
-export const services = { auth };
+export const services = { note };
