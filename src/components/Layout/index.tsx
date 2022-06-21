@@ -5,14 +5,13 @@ import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { RightOutlined } from '@ant-design/icons';
 
-export default function Layout({ children, full = false, showCreateBtn = true, subHeader }: LayoutProps) {
+export default function Layout({ children, full = false, showCreateBtn = true, SubHeader }: LayoutProps) {
   let contentClassName = 'page-layout-content';
   if (full) {
     contentClassName = `${contentClassName} is-full`;
   }
 
   let createBtn: ReactElement = <></>;
-  let subHeaderContent: ReactElement = <></>;
   if (showCreateBtn) {
     createBtn = (
       <div className="layout-header-create-btn">
@@ -25,9 +24,6 @@ export default function Layout({ children, full = false, showCreateBtn = true, s
       </div>
     );
   }
-  if (subHeader) {
-    subHeaderContent = <div className="sub-header-content">{subHeader}</div>;
-  }
 
   return (
     <div className="page-layout">
@@ -37,7 +33,11 @@ export default function Layout({ children, full = false, showCreateBtn = true, s
         {createBtn}
         <div className="layout-header-info">info</div>
       </div>
-      {subHeaderContent}
+      {SubHeader && (
+        <div className="sub-header-content">
+          <SubHeader />
+        </div>
+      )}
       <div className={contentClassName}>{children}</div>
     </div>
   );
@@ -45,7 +45,7 @@ export default function Layout({ children, full = false, showCreateBtn = true, s
 
 interface LayoutProps {
   children?: ReactElement;
-  subHeader?: ReactElement;
+  SubHeader?: React.FC;
   full?: boolean;
   showCreateBtn?: boolean;
 }

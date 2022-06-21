@@ -4,7 +4,7 @@ import CategoryHeader from '@/components/categoryHeader';
 
 export default function Home() {
   return (
-    <Layout subHeader={CategoryHeader()}>
+    <Layout SubHeader={CategoryHeader}>
       <div className="home-page">
         <div className="home-page-content">
           <div className="home-header"></div>

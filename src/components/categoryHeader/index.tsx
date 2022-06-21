@@ -2,7 +2,7 @@ import { services } from '@/service';
 import { useEffectService } from '@/hooks';
 import './index.less';
 
-export default function CategoryHeader() {
+const CategoryHeader: React.FC = () => {
   useEffectService(() => {
     const fetchData = async () => {
       const result = await services.note.getCategory();
@@ -12,4 +12,6 @@ export default function CategoryHeader() {
     fetchData();
   });
   return <div className="category-header">category-header</div>;
-}
+};
+
+export default CategoryHeader;
