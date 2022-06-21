@@ -5,6 +5,8 @@ class AjaxRequest {
 
   constructor() {
     this.request.interceptors.request.use((config): AxiosRequestConfig => {
+      // TODO upd header
+
       return config;
     });
     this.request.interceptors.response.use(
@@ -13,35 +15,43 @@ class AjaxRequest {
     );
   }
 
-  private _handleRes(res: AxiosResponse): any {
-    return res.data;
-  }
+  private _handleRes(res: AxiosResponse): RequestRes {
+    const { statusCode, message, data } = res.data;
+    if (statusCode !== 1) {
+      const err: AjaxError = new Error(message);
+      err.code = statusCode;
 
-  private _handleError(err: AxiosError): AjaxError {
-    return err;
-  }
+      // TODO reporter
 
-  async get(url: string, params: any = {}, options?: AxiosRequestConfig): Promise<[AjaxError | null, any]> {
-    try {
-      const { data } = await this.request.get(url, { ...(options || {}), params });
-      return [null, data];
-    } catch (err: any) {
-      return Promise.resolve([err, null]);
+      return [null, err];
     }
+    return [data, null];
   }
 
-  async post(url: string, params: any = {}, options?: AxiosRequestConfig): Promise<[AjaxError | null, any]> {
-    try {
-      const { data } = await this.request.post(url, params, { ...(options || {}) });
-      return [null, data];
-    } catch (err: any) {
-      return Promise.resolve([err, null]);
-    }
+  private _handleError(err: AxiosError): ErrorRes {
+    const newErr: AjaxError = new Error(err.message);
+    newErr.code = err.request.code;
+
+    // TODO reporter
+
+    return [null, newErr];
+  }
+
+  get(url: string, params: any = {}, options?: AxiosRequestConfig): Promise<RequestRes> {
+    return this.request.get(url, { ...(options || {}), params });
+  }
+
+  post(url: string, params: any = {}, options?: AxiosRequestConfig): Promise<RequestRes> {
+    return this.request.post(url, params, { ...(options || {}) });
   }
 }
 
 export default new AjaxRequest();
 
-interface AjaxError extends AxiosError {
-  message: string;
+interface AjaxError extends Error {
+  code?: number;
 }
+
+type ErrorRes = [null, AjaxError];
+
+type RequestRes = [any, null] | ErrorRes;
